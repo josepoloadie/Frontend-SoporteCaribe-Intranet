@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary:    #004A97;
+  --color-secondary:  #0084CB;
+  --color-tertiary:   #1D1D1B;
+  --color-quaternary: #3C3C3B;
+  --color-neutral:    #878787;
+  --font-base: ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in { animation: fade-in 0.25s ease-out both; }
+
+@layer base {
+  body { background: #F4F6F8; color: #1D1D1B; font-family: var(--font-base); -webkit-font-smoothing: antialiased; }
+}
+
+@layer components {
+  /* Intranet UI */
+  .card        { @apply bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden; }
+  .th          { @apply text-left px-4 py-3 text-[11px] font-semibold tracking-wider uppercase text-gray-500 bg-gray-50 border-b border-gray-200; }
+  .td          { @apply px-4 py-3 border-b border-gray-100 text-gray-600 text-sm; }
+  .tr          { @apply hover:bg-gray-50 transition-colors; }
+  .input       { @apply w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-gray-900 text-sm outline-none focus:border-[#0084CB] focus:ring-2 focus:ring-[#0084CB]/20 transition-all placeholder:text-gray-400; }
+  .label       { @apply block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide; }
+  .btn-primary { @apply bg-[#004A97] text-white text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-[#0084CB] transition-colors inline-flex items-center gap-2 cursor-pointer border-0 shadow-sm; }
+  .btn-ghost   { @apply bg-white text-gray-600 text-sm border border-gray-300 px-4 py-2.5 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-all inline-flex items-center gap-2 cursor-pointer shadow-sm; }
+  .btn-danger  { @apply bg-red-50 text-red-600 text-sm border border-red-200 px-4 py-2 rounded-lg hover:bg-red-100 transition-colors inline-flex items-center gap-1.5 cursor-pointer; }
+  .tag         { @apply inline-block bg-gray-100 border border-gray-200 rounded-md text-[11px] font-medium text-gray-500 px-2 py-0.5 mr-1; }
+}
+
+/* Badges */
+.badge-ok     { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#dcfce7 !important; color:#15803d !important; border:1px solid #bbf7d0 !important; }
+.badge-warn   { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#fef9c3 !important; color:#a16207 !important; border:1px solid #fde68a !important; }
+.badge-danger { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#fee2e2 !important; color:#b91c1c !important; border:1px solid #fca5a5 !important; }
+.badge-info   { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#dbeafe !important; color:#1d4ed8 !important; border:1px solid #93c5fd !important; }
+.badge-purple { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#ede9fe !important; color:#6d28d9 !important; border:1px solid #c4b5fd !important; }
+.badge-gray   { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#f1f5f9 !important; color:#64748b !important; border:1px solid #cbd5e1 !important; }
+.badge-orange { display:inline-flex !important; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#ffedd5 !important; color:#c2410c !important; border:1px solid #fed7aa !important; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
