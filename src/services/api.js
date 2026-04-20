@@ -53,12 +53,13 @@ export const componentes = {
 
 // ── DAAS — Movimientos ───────────────────────────
 export const movimientos = {
-  list:    (params) => api.get('/movimientos', { params }),
-  get:     (id)     => api.get(`/movimientos/${id}`),
-  create:  (data)   => api.post('/movimientos', data),
-  avanzar: (id, d)  => api.post(`/movimientos/${id}/avanzar`, d),
-  instalar:(id, d)  => api.post(`/movimientos/${id}/instalar`, d),
-  recibir: (id, d)  => api.post(`/movimientos/${id}/recibir`, d),
+  list:             (params) => api.get('/movimientos', { params }),
+  get:              (id)     => api.get(`/movimientos/${id}`),
+  create:           (data)   => api.post('/movimientos', data),
+  avanzar:          (id, d)  => api.put(`/movimientos/${id}/estado`, d),
+  actualizarEstado: (id, d)  => api.put(`/movimientos/${id}/estado`, d),
+  instalar:         (id, d)  => api.post(`/movimientos/${id}/instalar`, d),
+  recibir:          (id, d)  => api.post(`/movimientos/${id}/recibir`, d),
 }
 
 // ── DAAS — PartSurfer ────────────────────────────
