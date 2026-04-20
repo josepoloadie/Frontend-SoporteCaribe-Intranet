@@ -38,7 +38,7 @@ const LABEL_MAP = {
   DANADO:'⚠ Dañado', PENDIENTE_REPOSICION:'⬒ Pend. reposición',
   CERRADO:'✓ Cerrado', NA:'—', DEFINITIVO:'◆ Definitivo',
   COMPLETO:'✓ Completo', CON_FALLAS:'⚠ Con fallas', PRESTADO:'⇄ Prestado',
-  PENDIENTE_DEVOLUCION:'↩ Pend. devolución', INCOMPLETO:'◌ Incompleto', BAJA:'✕ Baja',
+  INCOMPLETO:'◌ Incompleto', BAJA:'✕ Baja',
   ENTREGADO:'⇄ Entregado', EN_ESPERA:'⏳ En espera repuesto',
   INSTALACION:'⬇ Instalación', RETIRO:'⬆ Retiro', DEVOLUCION:'↩ Devolución', REEMPLAZO:'⇄ Reemplazo', INGRESO:'⊕ Ingreso',
   LAPTOP:'Laptop', DESKTOP:'Desktop', AIO:'AiO', MONITOR:'Monitor', IMPRESORA:'Impresora',

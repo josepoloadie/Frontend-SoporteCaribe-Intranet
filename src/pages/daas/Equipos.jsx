@@ -7,7 +7,7 @@ import { PageHeader, Badge, SearchBox, Modal, FormGroup, Spinner, EmptyState } f
 import { useImportStore } from '../../store/importStore'
 
 const TIPOS   = ['LAPTOP','DESKTOP','AIO','MONITOR','IMPRESORA']
-const ESTADOS = ['COMPLETO','CON_FALLAS','INCOMPLETO','PRESTADO','PENDIENTE_REPOSICION','PENDIENTE_DEVOLUCION','BAJA']
+const ESTADOS = ['COMPLETO','CON_FALLAS','INCOMPLETO','PRESTADO','BAJA']
 
 function SortTh({ children, field, sort, onSort }) {
   const active = sort.col === field
