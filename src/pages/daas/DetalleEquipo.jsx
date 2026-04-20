@@ -437,7 +437,8 @@ export default function DetalleEquipo() {
       <Modal open={modalEliminar} onClose={() => setModalEliminar(false)} title="✕ Eliminar Equipo Permanentemente"
         footer={<>
           <button className="btn-ghost" onClick={() => setModalEliminar(false)}>Cancelar</button>
-          <button className="bg-danger text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-red-600 transition-colors cursor-pointer disabled:opacity-40"
+          <button className="text-xs font-medium px-4 py-2 rounded-lg transition-colors cursor-pointer border"
+            style={{ background: confirmText.trim() === equipo.serial.trim() ? '#dc2626' : '#f1f5f9', color: confirmText.trim() === equipo.serial.trim() ? 'white' : '#94a3b8', borderColor: confirmText.trim() === equipo.serial.trim() ? '#dc2626' : '#cbd5e1', cursor: confirmText.trim() === equipo.serial.trim() ? 'pointer' : 'not-allowed' }}
             onClick={handleEliminar} disabled={confirmText.trim() !== equipo.serial.trim() || procesando}>
             {procesando ? 'Eliminando...' : 'Eliminar definitivamente'}
           </button>
