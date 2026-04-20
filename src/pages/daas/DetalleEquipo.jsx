@@ -49,6 +49,7 @@ export default function DetalleEquipo() {
   const [loading, setLoading]     = useState(true)
   const [tab, setTab]             = useState(0)
   const [modalEliminar, setModalEliminar] = useState(false)
+  const [menuAcciones, setMenuAcciones] = useState(false)
   const [confirmText, setConfirmText]     = useState('')
   const [procesando, setProcesando]       = useState(false)
   const [seleccion, setSeleccion]         = useState({})
@@ -146,7 +147,7 @@ export default function DetalleEquipo() {
   async function handleArchivar() {
     if (!confirm('¿Archivar este equipo?')) return
     setProcesando(true)
-    try { await api.archivar(id); toast.success('Equipo archivado'); navigate('/equipos') }
+    try { await api.archivar(id); toast.success('Equipo archivado'); navigate('/intranet/daas/equipos') }
     catch (err) { toast.error(err.response?.data?.error || 'Error') }
     finally { setProcesando(false) }
   }
@@ -154,7 +155,7 @@ export default function DetalleEquipo() {
   async function handleEliminar() {
     if (confirmText !== equipo.serial) return toast.error('El serial no coincide')
     setProcesando(true)
-    try { await api.eliminar(id); toast.success('Equipo eliminado'); navigate('/equipos') }
+    try { await api.eliminar(id); toast.success('Equipo eliminado'); navigate('/intranet/daas/equipos') }
     catch (err) { toast.error(err.response?.data?.error || 'Error'); setProcesando(false) }
   }
 
@@ -179,14 +180,24 @@ export default function DetalleEquipo() {
   return (
     <>
       <PageHeader title={equipo.serial} actions={
-        <div className="flex gap-2">
-          {equipo.estado !== 'BAJA' && (
-            <button className="btn-ghost text-warn border-yellow-500/30" onClick={handleArchivar} disabled={procesando}>⬒ Archivar</button>
-          )}
-          <button className="btn-ghost" onClick={abrirEditar}>✎ Editar</button>
-          <button className="bg-transparent text-danger text-xs border border-red-500/30 px-4 py-2 rounded-lg hover:bg-red-100 transition-colors inline-flex items-center gap-1.5 cursor-pointer"
-            onClick={() => { setConfirmText(''); setModalEliminar(true) }}>✕ Eliminar</button>
+        <div className="flex gap-2 items-center">
           <Link to="/intranet/daas/equipos" className="btn-ghost">← Volver</Link>
+          <div className="relative">
+            <button className="btn-primary" onClick={() => setMenuAcciones(m => !m)}>
+              Acciones ▾
+            </button>
+            {menuAcciones && (
+              <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-50 w-48 py-1" onClick={() => setMenuAcciones(false)}>
+                <button className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors" onClick={abrirEditar}>✎ Editar</button>
+                {equipo.estado !== 'BAJA' && (
+                  <button className="w-full text-left px-4 py-2.5 text-sm text-yellow-600 hover:bg-yellow-50 transition-colors" onClick={handleArchivar} disabled={procesando}>⬒ Archivar</button>
+                )}
+                <hr className="my-1 border-gray-100" />
+                <button className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                  onClick={() => { setConfirmText(''); setModalEliminar(true) }}>✕ Eliminar</button>
+              </div>
+            )}
+          </div>
         </div>
       } />
 
@@ -427,7 +438,7 @@ export default function DetalleEquipo() {
         footer={<>
           <button className="btn-ghost" onClick={() => setModalEliminar(false)}>Cancelar</button>
           <button className="bg-danger text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-red-600 transition-colors cursor-pointer disabled:opacity-40"
-            onClick={handleEliminar} disabled={confirmText !== equipo.serial || procesando}>
+            onClick={handleEliminar} disabled={confirmText.trim() !== equipo.serial.trim() || procesando}>
             {procesando ? 'Eliminando...' : 'Eliminar definitivamente'}
           </button>
         </>}>
